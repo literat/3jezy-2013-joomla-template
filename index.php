@@ -141,12 +141,12 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
             			</span>
                 		<span style="position:absolute; float:left; top:31px; left:180px;">
                 			<h1 style="font-weight:bold;color:white; font-size: 2.2em;"> <?php echo htmlspecialchars($config->get('sitename'));?></h1>
-                			<h2>největší vodácká akce pro skauty i veřejnost u nás</h2>
             			</span>
 						<?php if ($this->countModules('position-12')): ?>
 						<div id="top"><jdoc:include type="modules" name="position-12"   /></div>
 						<?php endif; ?>
 						<jdoc:include type="message" />
+						<div id="subheading"><h3>největší vodácká akce pro skauty i veřejnost u nás</h3></div>
 						<jdoc:include type="component" />
 					</div><!-- end main -->
                     <?php if ($navposition == 'left' and $showleft) : ?>
@@ -216,7 +216,7 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
         var pageTracker = _gat._getTracker("UA-10559143-1");
         pageTracker._trackPageview();
         } catch(err) {}</script>
-        
+
         <!--end of position-measure-->
 		<jdoc:include type="modules" name="debug" />
 	</body>
