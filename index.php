@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Joomla.Site
- * @subpackage  Templates.3jezy
+ * @subpackage  Templates.3jezy.2017
  * @copyright   Copyright (C) 2012 - 2013 Tomas Litera, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -136,7 +136,7 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
 					<div id="main">
 						<span style="position:absolute; float:left; top:20px; left:20px;">
                 			<a href="<?php echo $this->baseurl ?>">
-                				<img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/3jezy-logo.png" alt="logo">
+                				<img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/logo/3jezy-logo_text-right_white.png" alt="logo" width="160">
                     		</a>
             			</span>
                 		<span style="position:absolute; float:left; top:31px; left:180px;">
