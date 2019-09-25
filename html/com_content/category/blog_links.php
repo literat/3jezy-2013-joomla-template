@@ -7,13 +7,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die;
+defined('_JEXEC') or die();
 
-$params =& $this->item->params;
+$params = &$this->item->params;
 $app = JFactory::getApplication();
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-
 ?>
 
 <div class="items-more">
@@ -21,15 +20,13 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 <ol>
 
-<?php
-	foreach ($this->link_items as &$item) :
-?>
-		 <li>
-		  		<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid)); ?>">
-			<?php echo $item->title; ?></a>
-		</li>
+<?php foreach ($this->link_items as &$item): ?>
+            <li>
+                    <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid)); ?>">
+            <?php echo $item->title; ?></a>
+        </li>
 <?php endforeach; ?>
-	</ol>
+    </ol>
 </div>
 
 
