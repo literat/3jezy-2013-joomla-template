@@ -18,14 +18,14 @@ $cparams = JComponentHelper::getParams('com_media');
                 <?php echo $this->escape($this->contact->category_title); ?></a>
             </span>
         </h3>
-    <?php if ($this->contact->name && $this->params->get('show_name')): ?>
+    <?php if ($this->contact->name && $this->params->get('show_name')) : ?>
         <h2>
             <span class="contact-name"><?php echo $this->contact->name; ?></span>
         </h2>
     <?php endif; ?>
 
     <div class="encyclopedia_col1">
-        <?php if ($this->contact->image): ?>
+        <?php if ($this->contact->image) : ?>
             <div class="contact-image">
             <?php
             // We are going to use the contact address field for the main image caption.
@@ -57,32 +57,32 @@ $cparams = JComponentHelper::getParams('com_media');
         <?php
 //Let's use position for the scientific name.
 ?>
-        <?php if ($this->contact->con_position && $this->params->get('show_position')): ?>
+        <?php if ($this->contact->con_position && $this->params->get('show_position')) : ?>
             <p class="contact-position"><?php echo $this->contact->con_position; ?></p>
         <?php endif; ?>
         <?php
 //Let's use state to put the family name.
 ?>
-        <?php if ($this->contact->state && $this->params->get('show_state')): ?>
+        <?php if ($this->contact->state && $this->params->get('show_state')) : ?>
             <p class="contact-state"><?php echo $this->contact->state; ?></p>
         <?php endif; ?>
         <?php
 // Let's use contry to list the main countries it grows in. '
 ?>
-        <?php if ($this->contact->country && $this->params->get('show_country')): ?>
+        <?php if ($this->contact->country && $this->params->get('show_country')) : ?>
             <p class="contact-country"><?php echo $this->contact->country; ?></p>
         <?php endif; ?>
     </div>
 
 <div class="clr"> </div>
-    <?php if ($this->params->get('presentation_style') != 'plain'): ?>
+    <?php if ($this->params->get('presentation_style') != 'plain') : ?>
         <?php echo JHtml::_($this->params->get('presentation_style') . '.start', 'contact-slider'); ?>
     <?php endif; ?>
 <div class="encyclopedia_links">
 <?php echo $this->loadTemplate('links'); ?>
 
 </div>
-    <?php if ($this->params->get('presentation_style') != 'plain'): ?>
+    <?php if ($this->params->get('presentation_style') != 'plain') : ?>
             <?php echo JHtml::_($this->params->get('presentation_style') . '.end'); ?>
             <?php endif; ?>
 </div>

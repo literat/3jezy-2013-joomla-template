@@ -15,8 +15,8 @@
         "symplify/coding-standard": "^6.1"
     },
     "scripts": {
-        "lint": "ecs check --config vendor/symplify/easy-coding-standard/config/set/symplify.yaml src",
-        "lint:fix": "ecs check --config vendor/symplify/easy-coding-standard/config/set/symplify.yaml --fix src",
+        "lint": "ecs check src --ansi",
+        "lint:fix": "ecs check src --fix --ansi",
         "format": "npm run format",
         "format:fix": "npm run format:fix"
     }

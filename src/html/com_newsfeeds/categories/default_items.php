@@ -9,10 +9,10 @@
 
 defined('_JEXEC') or die();
 $class = ' class="first"';
-if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0): ?>
+if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) : ?>
 <ul>
-<?php foreach ($this->items[$this->parent->id] as $id => $item): ?>
-    <?php if ($this->params->get('show_empty_categories_cat') || $item->numitems || count($item->getChildren())):
+<?php foreach ($this->items[$this->parent->id] as $id => $item) : ?>
+    <?php if ($this->params->get('show_empty_categories_cat') || $item->numitems || count($item->getChildren())) :
     if (!isset($this->items[$this->parent->id][$id + 1])) {
         $class = ' class="last"';
     } ?>
@@ -21,21 +21,21 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0): ?>
         <span class="item-title"><a href="<?php echo JRoute::_(NewsfeedsHelperRoute::getCategoryRoute($item->id)); ?>">
             <?php echo $this->escape($item->title); ?></a>
         </span>
-        <?php if ($this->params->get('show_subcat_desc_cat') == 1): ?>
-        <?php if ($item->description): ?>
+        <?php if ($this->params->get('show_subcat_desc_cat') == 1) : ?>
+        <?php if ($item->description) : ?>
             <div class="category-desc">
                 <?php echo JHtml::_('content.prepare', $item->description, '', 'com_newsfeeds.categories'); ?>
             </div>
         <?php endif; ?>
         <?php endif; ?>
-        <?php if ($this->params->get('show_cat_items_cat') == 1): ?>
+        <?php if ($this->params->get('show_cat_items_cat') == 1) : ?>
             <dl class="newsfeed-count"><dt>
                 <?php echo JText::_('COM_NEWSFEEDS_CAT_NUM'); ?></dt>
                 <dd><?php echo $item->numitems; ?></dd>
             </dl>
         <?php endif; ?>
 
-        <?php if (count($item->getChildren()) > 0):
+        <?php if (count($item->getChildren()) > 0) :
         $this->items[$item->id] = $item->getChildren();
         $this->parent = $item;
         $this->maxLevelcat--;

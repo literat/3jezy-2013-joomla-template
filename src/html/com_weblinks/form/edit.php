@@ -29,7 +29,7 @@ $params = $this->state->get('params');
     }
 </script>
 <div class="edit<?php echo $this->pageclass_sfx; ?>">
-    <?php if ($this->params->get('show_page_heading')): ?>
+    <?php if ($this->params->get('show_page_heading')) : ?>
     <h1>
         <?php echo $this->escape($this->params->get('page_heading')); ?>
     </h1>
@@ -83,7 +83,7 @@ $params = $this->state->get('params');
                 <?php echo $this->form->getInput('url'); ?>
             </div>
         </div>
-        <?php if ($this->user->authorise('core.edit.state', 'com_weblinks.weblink')): ?>
+        <?php if ($this->user->authorise('core.edit.state', 'com_weblinks.weblink')) : ?>
             <div class="control-group">
                 <div class="control-label">
                     <?php echo $this->form->getLabel('state'); ?>

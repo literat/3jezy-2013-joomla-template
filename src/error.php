@@ -1,10 +1,10 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  Templates.3JEZY
+ * @package    Joomla.Site
+ * @subpackage Templates.3JEZY
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @license   GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die();
@@ -41,23 +41,23 @@ $this->direction = $doc->direction;
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/<?php echo htmlspecialchars(
     $color
 ); ?>.css" type="text/css" />
-<?php
-$files = JHtml::_('stylesheet', 'templates/' . $this->template . '/css/general.css', null, false, true);
-if ($files):
-    if (!is_array($files)):
-        $files = array($files);
-    endif;
-    foreach ($files as $file): ?>
+    <?php
+    $files = JHtml::_('stylesheet', 'templates/' . $this->template . '/css/general.css', null, false, true);
+    if ($files) :
+        if (!is_array($files)) :
+            $files = array($files);
+        endif;
+        foreach ($files as $file) : ?>
     <link rel="stylesheet" href="<?php echo $file; ?>" type="text/css" />
-<?php endforeach;
-endif;
-?>
+    <?php endforeach;
+    endif;
+    ?>
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/<?php echo htmlspecialchars(
-    $color
-); ?>.css" type="text/css" />
-        <?php if ($this->direction == 'rtl'): ?>
+        $color
+    ); ?>.css" type="text/css" />
+        <?php if ($this->direction == 'rtl') : ?>
             <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template_rtl.css" type="text/css" />
-            <?php if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/css/' . $color . '_rtl.css')): ?>
+            <?php if (file_exists(sprintf('%s/templates/%s/css/%s_rtl.css', JPATH_SITE . $this->template, $color))) : ?>
                 <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/<?php echo $color; ?>_rtl.css" type="text/css" />
             <?php endif; ?>
         <?php endif; ?>
@@ -88,16 +88,16 @@ endif;
                 </span>
                     <!--<div class="logoheader">
                         <?php
-    $params = JFactory::getApplication()->getTemplate(true)->params;
-    $logo = $params->get('logo');
-    ?>
+                        $params = JFactory::getApplication()->getTemplate(true)->params;
+                        $logo = $params->get('logo');
+                        ?>
                     <h1 id="logo">
-                                        <?php if ($logo): ?>
+                                        <?php if ($logo) : ?>
                                         <img src="<?php echo $this->baseurl; ?>/<?php echo htmlspecialchars(
-    $logo
-); ?>"  alt="<?php echo htmlspecialchars($params->get('sitetitle')); ?>" />
+                            $logo
+                        ); ?>"  alt="<?php echo htmlspecialchars($params->get('sitetitle')); ?>" />
                                         <?php endif; ?>
-                                        <?php if (!$logo): ?>
+                                        <?php if (!$logo) : ?>
                                         <?php echo htmlspecialchars($params->get('sitetitle')); ?>
                                         <?php endif; ?>
                                         <span class="header1">
@@ -105,8 +105,12 @@ endif;
                                         </span></h1>
                     </div>--><!-- end logoheader -->
                         <ul class="skiplinks">
-                            <li><a href="#wrapper2" class="u2"><?php echo JText::_('TPL_3JEZY_SKIP_TO_ERROR_CONTENT'); ?></a></li>
-                            <li><a href="#nav" class="u2"><?php echo JText::_('TPL_3JEZY_ERROR_JUMP_TO_NAV'); ?></a></li>
+                            <li><a href="#wrapper2" class="u2"><?php echo JText::_(
+                                            'TPL_3JEZY_SKIP_TO_ERROR_CONTENT'
+                                        ); ?></a></li>
+                            <li><a href="#nav" class="u2"><?php echo JText::_(
+                                'TPL_3JEZY_ERROR_JUMP_TO_NAV'
+                            ); ?></a></li>
                         </ul>
                         <div id="line"></div>
                 </div><!-- end header -->
@@ -116,14 +120,14 @@ endif;
             <div id="errorboxbody">
                         <h2><?php echo JText::_('JERROR_AN_ERROR_HAS_OCCURRED'); ?><br />
                                 <?php echo JText::_('JERROR_LAYOUT_PAGE_NOT_FOUND'); ?></h2>
-                                <?php if (JModuleHelper::getModule('search')): ?>
+                                <?php if (JModuleHelper::getModule('search')) : ?>
                                     <div id="searchbox">
                                     <h3 class="unseen"><?php echo JText::_('TPL_3JEZY_SEARCH'); ?></h3>
                                     <p><?php echo JText::_('JERROR_LAYOUT_SEARCH'); ?></p>
                                     <?php
-        $module = JModuleHelper::getModule('search');
-        echo JModuleHelper::renderModule($module);
-        ?>
+                                    $module = JModuleHelper::getModule('search');
+                                    echo JModuleHelper::renderModule($module);
+                                    ?>
                                     </div>
                                 <?php endif; ?>
                                 <div>
@@ -133,9 +137,9 @@ endif;
                         <h2>#<?php echo $this->error->getCode(); ?>&nbsp;<?php echo $this->error->getMessage(); ?></h2> <br />
             </div><!-- end wrapper -->
         </div><!-- end contentarea -->
-                        <?php if ($this->debug):
-        echo $this->renderBacktrace();
-    endif; ?>
+                        <?php if ($this->debug) :
+                            echo $this->renderBacktrace();
+                        endif; ?>
             </div>  <!--end all -->
         </div>
     </div>
@@ -145,9 +149,9 @@ endif;
 </html>
 <?php } else { ?>
 <?php if (!isset($this->error)) {
-    $this->error = JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
-    $this->debug = false;
-} ?>
+                            $this->error = JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+                            $this->debug = false;
+                        } ?>
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/system/css/error.css" type="text/css" />
 </head>
 <body>
@@ -169,11 +173,11 @@ endif;
 
                 <ul>
                     <li><a href="<?php echo $this->baseurl; ?>/index.php" title="<?php echo JText::_(
-    'JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'
-); ?>"><?php echo JText::_('JERROR_LAYOUT_HOME_PAGE'); ?></a></li>
+                            'JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'
+                        ); ?>"><?php echo JText::_('JERROR_LAYOUT_HOME_PAGE'); ?></a></li>
                     <li><a href="<?php echo $this->baseurl; ?>/index.php?option=com_search" title="<?php echo JText::_(
-    'JERROR_LAYOUT_SEARCH_PAGE'
-); ?>"><?php echo JText::_('JERROR_LAYOUT_SEARCH_PAGE'); ?></a></li>
+                        'JERROR_LAYOUT_SEARCH_PAGE'
+                    ); ?>"><?php echo JText::_('JERROR_LAYOUT_SEARCH_PAGE'); ?></a></li>
 
                 </ul>
 
@@ -181,9 +185,9 @@ endif;
             <div id="techinfo">
             <p><?php echo $this->error->getMessage(); ?></p>
             <p>
-                <?php if ($this->debug):
-        echo $this->renderBacktrace();
-    endif; ?>
+                <?php if ($this->debug) :
+                    echo $this->renderBacktrace();
+                endif; ?>
             </p>
             </div>
             </div>

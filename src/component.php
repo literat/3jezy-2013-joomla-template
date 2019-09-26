@@ -1,10 +1,10 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  Templates.beez3
+ * @package    Joomla.Site
+ * @subpackage Templates.beez3
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @license   GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die();
@@ -35,21 +35,21 @@ $doc->addStyleSheet(
 );
 
 $files = JHtml::_('stylesheet', 'templates/' . $this->template . '/css/general.css', null, false, true);
-if ($files):
-    if (!is_array($files)):
+if ($files) :
+    if (!is_array($files)) :
         $files = array($files);
     endif;
-    foreach ($files as $file):
+    foreach ($files as $file) :
         $doc->addStyleSheet($file);
     endforeach;
 endif;
 
-$doc->addStyleSheet('templates/' . $this->template . '/css/' . htmlspecialchars($color) . '.css');
+$doc->addStyleSheet(sprintf('templates/%s%/css/%s.css', $this->template, htmlspecialchars($color)));
 if ($this->direction == 'rtl') {
-    $doc->addStyleSheet($this->baseurl . '/templates/' . $this->template . '/css/template_rtl.css');
-    if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/css/' . $color . '_rtl.css')) {
+    $doc->addStyleSheet(sprintf('%s/templates/%s/css/template_rtl.css', $this->baseUrl, $this->template));
+    if (file_exists(sprintf('%s/templates/%s/css/%s_rtl.css', JPATH_SITE, $this->template, $color))) {
         $doc->addStyleSheet(
-            $this->baseurl . '/templates/' . $this->template . '/css/' . htmlspecialchars($color) . '_rtl.css'
+            sprintf('%s/templates/%s/css/%s_rtl.css', $this->baseurl, $this->template, htmlspecialchars($color))
         );
     }
 }

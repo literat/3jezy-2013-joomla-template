@@ -13,7 +13,7 @@ defined('_JEXEC') or die(); ?>
 <?php if ($params->get('showHere', 1)) {
     echo '<span class="showHere">' . JText::_('MOD_BREADCRUMBS_HERE') . '</span>';
 } ?>
-<?php for ($i = 0; $i < $count; $i++):
+<?php for ($i = 0; $i < $count; $i++) :
     // Workaround for duplicate Home when using multilanguage
     if ($i == 1 && !empty($list[$i]->link) && !empty($list[$i - 1]->link) && $list[$i]->link == $list[$i - 1]->link) {
         continue;

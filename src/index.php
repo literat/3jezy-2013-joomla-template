@@ -1,9 +1,9 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  Templates.3jezy.2017
- * @copyright   Copyright (C) 2012 - 2013 Tomas Litera, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @package    Joomla.Site
+ * @subpackage Templates.3jezy.2017
+ * @copyright  2012 - 2013 Tomas Litera, Inc. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // No direct access.
@@ -66,19 +66,10 @@ $doc->addStyleSheet(
     $media = 'screen,projection'
 );
 $doc->addStyleSheet(
-    JURI::base() . 'templates/' . $this->template . '/css/' . htmlspecialchars($color) . '.css',
+    sprintf('%s/templates/%s/css/%s.css', JURI::base(), $this->template, htmlspecialchars($color)),
     $type = 'text/css',
     $media = 'screen,projection'
 );
-
-if ($this->direction == 'rtl') {
-    $doc->addStyleSheet($this->baseurl . '/templates/' . $this->template . '/css/template_rtl.css');
-    if (file_exists(JPATH_SITE . '/templates/' . $this->template . '/css/' . $color . '_rtl.css')) {
-        $doc->addStyleSheet(
-            $this->baseurl . '/templates/' . $this->template . '/css/' . htmlspecialchars($color) . '_rtl.css'
-        );
-    }
-}
 
 JHtml::_('bootstrap.framework');
 $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/md_stylechanger.js', 'text/javascript');
@@ -102,20 +93,6 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
         <![endif]-->
     </head>
     <body>
-        <?php
-/*if ($color == 'image'):?>
-            <style type="text/css">
-                    .logoheader
-                    {
-                        background:url('<?php echo $this->baseurl . '/' . htmlspecialchars($headerImage); ?>') no-repeat right;
-                    }
-                    body
-                    {
-                        background: <?php echo $templateparams->get('backgroundcolor'); ?>;
-                    }
-            </style>
-        <?php endif;*/
-?>
         <div id="all">
             <header id="header">
                 <!--start of header-banner-position-->
@@ -123,14 +100,14 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
                 <!--end of header-banner-position-->
             <!--<div class="logoheader">
                     <h1 id="logo">
-                        <?php if ($logo): ?>
+                        <?php if ($logo) : ?>
                         <img src="<?php echo $this->baseurl; ?>/<?php echo htmlspecialchars(
     $logo
 ); ?>"  alt="<?php echo htmlspecialchars($templateparams->get('sitetitle')); ?>" />
                         <?php endif; ?>
-                        <?php if (!$logo and $templateparams->get('sitetitle')): ?>
+                        <?php if (!$logo and $templateparams->get('sitetitle')) : ?>
                             <?php echo htmlspecialchars($templateparams->get('sitetitle')); ?>
-                        <?php elseif (!$logo and $config->get('sitename')): ?>
+                        <?php elseif (!$logo and $config->get('sitename')) : ?>
                             <?php echo htmlspecialchars($config->get('sitename')); ?>
                         <?php endif; ?>
                         <span class="header1">
@@ -141,7 +118,7 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
             <!--<ul class="skiplinks">
                     <li><a href="#main" class="u2"><?php echo JText::_('TPL_BEEZ3_SKIP_TO_CONTENT'); ?></a></li>
                     <li><a href="#nav" class="u2"><?php echo JText::_('TPL_BEEZ3_JUMP_TO_NAV'); ?></a></li>
-                    <?php if ($showRightColumn): ?>
+                    <?php if ($showRightColumn) : ?>
                     <li><a href="#additional" class="u2"><?php echo JText::_('TPL_BEEZ3_JUMP_TO_INFO'); ?></a></li>
                     <?php endif; ?>
                 </ul>
@@ -171,26 +148,26 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
                         </span>
                         <span style="position:absolute; float:left; top:31px; left:180px;">
                             <h1 style="font-weight:bold;color:white; font-size: 2.2em;"> <?php echo htmlspecialchars(
-                                $config->get('sitename')
-                            ); ?></h1>
+    $config->get('sitename')
+); ?></h1>
                         </span>
-                        <?php if ($this->countModules('position-12')): ?>
+                        <?php if ($this->countModules('position-12')) : ?>
                         <div id="top"><jdoc:include type="modules" name="position-12"   /></div>
                         <?php endif; ?>
                         <jdoc:include type="message" />
                         <div id="subheading"><h3>největší vodácká akce pro skauty i veřejnost u nás</h3></div>
                         <jdoc:include type="component" />
                     </div><!-- end main -->
-                    <?php if ($navposition == 'left' and $showleft): ?>
+                    <?php if ($navposition == 'left' and $showleft) : ?>
                     <nav id="left" class="<?php if ($showRightColumn == null) {
-                        echo 'leftbigger';
-                    } ?>">
+    echo 'leftbigger';
+} ?>">
                         <jdoc:include type="modules" name="position-7" style="beezDivision" headerLevel="3" />
                         <jdoc:include type="modules" name="position-4" style="beezHide" headerLevel="3" state="0 " />
                         <jdoc:include type="modules" name="position-5" style="beezTabs" headerLevel="2"  id="3" />
                     </nav><!-- end navi -->
                     <?php endif; ?>
-                    <?php if ($showRightColumn): ?>
+                    <?php if ($showRightColumn) : ?>
                     <!--<h2 class="unseen">
                         <?php echo JText::_('TPL_BEEZ3_ADDITIONAL_INFORMATION'); ?>
                     </h2>-->
@@ -207,10 +184,10 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
                         <jdoc:include type="modules" name="position-3" style="beezDivision" headerLevel="3"  />
                     </nav><!-- end right -->
                     <?php endif; ?>
-                    <?php if ($navposition == 'center' and $showleft): ?>
+                    <?php if ($navposition == 'center' and $showleft) : ?>
                     <nav class="left <?php if ($showRightColumn == null) {
-                        echo 'leftbigger';
-                    } ?>" id="nav" >
+    echo 'leftbigger';
+} ?>" id="nav" >
                         <!--start of position-menu-->
                         <jdoc:include type="modules" name="position-menu"  style="beezDivision" headerLevel="3" />
                         <!--end of position-menu-->

@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die();
 
-if ($this->params->get('presentation_style') == 'sliders'): ?>
+if ($this->params->get('presentation_style') == 'sliders') : ?>
 <div class="accordion-group">
     <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="accordionContact" href="#display-links">
@@ -20,18 +20,17 @@ if ($this->params->get('presentation_style') == 'sliders'): ?>
         <div class="accordion-inner">
 <?php endif;
 ?>
-<?php if ($this->params->get('presentation_style') == 'plain'): ?>
+<?php if ($this->params->get('presentation_style') == 'plain') : ?>
 <?php echo '<h3>' . JText::_('JGLOBAL_ARTICLES') . '</h3>'; ?>
 <?php endif; ?>
 
             <div class="contact-links">
                 <ul class="nav nav-list">
-                    <?php foreach (range('a', 'e') as $char):
-
+                    <?php foreach (range('a', 'e') as $char) :
                         // letters 'a' to 'e'
                         $link = $this->contact->params->get('link' . $char);
                         $label = $this->contact->params->get('link' . $char . '_name');
-                        if (!$link):
+                        if (!$link) :
                             continue;
                         endif; // Add 'http://' if not present
                         $link = 0 === strpos(
@@ -50,7 +49,7 @@ if ($this->params->get('presentation_style') == 'sliders'): ?>
                 </ul>
             </div>
 
-<?php if ($this->params->get('presentation_style') == 'sliders'): ?>
+<?php if ($this->params->get('presentation_style') == 'sliders') : ?>
         </div>
     </div>
 </div>

@@ -16,16 +16,15 @@ $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn = $this->escape($this->state->get('list.direction'));
 ?>
 
-<?php if (empty($this->items)): ?>
+<?php if (empty($this->items)) : ?>
     <p> <?php echo JText::_('COM_NEWSFEEDS_NO_ARTICLES'); ?>	 </p>
-<?php else: ?>
-
+<?php else : ?>
 <form action="<?php echo htmlspecialchars(
     JUri::getInstance()->toString()
 ); ?>" method="post" name="adminForm" id="adminForm">
     <fieldset class="filters">
     <legend class="hidelabeltxt"><?php echo JText::_('JGLOBAL_FILTER_LABEL'); ?></legend>
-    <?php if ($this->params->get('show_pagination_limit')): ?>
+    <?php if ($this->params->get('show_pagination_limit')) : ?>
         <div class="display-limit">
             <?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>&#160;
             <?php echo $this->pagination->getLimitBox(); ?>
@@ -35,7 +34,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
     <input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
     </fieldset>
     <table class="category">
-        <?php if ($this->params->get('show_headings') == 1): ?>
+        <?php if ($this->params->get('show_headings') == 1) : ?>
         <thead><tr>
 
                 <th class="item-title" id="tableOrdering">
@@ -43,13 +42,13 @@ $listDirn = $this->escape($this->state->get('list.direction'));
                 </th>
 
 
-                <?php if ($this->params->get('show_articles')): ?>
+                <?php if ($this->params->get('show_articles')) : ?>
                 <th class="item-num-art" id="tableOrdering2">
                     <?php echo JHtml::_('grid.sort', 'COM_NEWSFEEDS_NUM_ARTICLES', 'a.numarticles', $listDirn, $listOrder); ?>
                 </th>
                 <?php endif; ?>
 
-                <?php if ($this->params->get('show_link')): ?>
+                <?php if ($this->params->get('show_link')) : ?>
                 <th class="item-link" id="tableOrdering3">
                     <?php echo JHtml::_('grid.sort', 'COM_NEWSFEEDS_FEED_LINK', 'a.link', $listDirn, $listOrder); ?>
                 </th>
@@ -60,10 +59,10 @@ $listDirn = $this->escape($this->state->get('list.direction'));
         <?php endif; ?>
 
         <tbody>
-            <?php foreach ($this->items as $i => $item): ?>
-        <?php if ($this->items[$i]->published == 0): ?>
+            <?php foreach ($this->items as $i => $item) : ?>
+        <?php if ($this->items[$i]->published == 0) : ?>
             <tr class="system-unpublished cat-list-row<?php echo $i % 2; ?>">
-        <?php else: ?>
+        <?php else : ?>
             <tr class="cat-list-row<?php echo $i % 2; ?>" >
         <?php endif; ?>
 
@@ -72,13 +71,13 @@ $listDirn = $this->escape($this->state->get('list.direction'));
                             <?php echo $item->name; ?></a>
                     </td>
 
-                    <?php if ($this->params->get('show_articles')): ?>
+                    <?php if ($this->params->get('show_articles')) : ?>
                         <td class="item-num-art">
                             <?php echo $item->numarticles; ?>
                         </td>
                     <?php endif; ?>
 
-                    <?php if ($this->params->get('show_link')): ?>
+                    <?php if ($this->params->get('show_link')) : ?>
                         <td class="item-link">
                             <a href="<?php echo $item->link; ?>"><?php echo $item->link; ?></a>
                         </td>
@@ -91,9 +90,9 @@ $listDirn = $this->escape($this->state->get('list.direction'));
         </tbody>
     </table>
 
-    <?php if ($this->params->get('show_pagination')): ?>
+    <?php if ($this->params->get('show_pagination')) : ?>
     <div class="pagination">
-    <?php if ($this->params->def('show_pagination_results', 1)): ?>
+    <?php if ($this->params->def('show_pagination_results', 1)) : ?>
         <p class="counter">
             <?php echo $this->pagination->getPagesCounter(); ?>
         </p>
