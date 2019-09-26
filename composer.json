@@ -1,0 +1,23 @@
+{
+    "name": "skaut/3jezy-2017-joomla-template",
+    "description": "3 jezy 2017 Joomla Template",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "literat",
+            "email": "tomas@litera.me"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "symplify/easy-coding-standard": "^6.1",
+        "symplify/coding-standard": "^6.1"
+    },
+    "scripts": {
+        "lint": "ecs check --config vendor/symplify/easy-coding-standard/config/set/symplify.yaml src",
+        "lint:fix": "ecs check --config vendor/symplify/easy-coding-standard/config/set/symplify.yaml --fix src",
+        "format": "npm run format",
+        "format:fix": "npm run format:fix"
+    }
+}

@@ -34,7 +34,10 @@ if ($this->params->get('presentation_style') == 'sliders'): ?>
                         if (!$link):
                             continue;
                         endif; // Add 'http://' if not present
-                        $link = 0 === strpos($link, 'http') ? $link : 'http://' . $link; // If no label is present, take the link
+                        $link = 0 === strpos(
+                            $link,
+                            'http'
+                        ) ? $link : 'http://' . $link; // If no label is present, take the link
                         $label = $label ? $label : $link;
                         ?>
                         <li>
