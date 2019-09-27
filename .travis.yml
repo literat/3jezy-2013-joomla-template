@@ -14,3 +14,8 @@ script:
 
 after_success:
     - travis_retry php vendor/bin/php-coveralls -v
+
+notifications:
+  slack:
+    rooms:
+      - literatom:BbJEUK17CJXUjbq7aZh2Q2q9#3jezy
