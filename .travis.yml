@@ -17,7 +17,7 @@ jobs:
     - name: 'Deploy'
       php: '7.2'
       if: branch = master
-      script: 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./bin/deploy.sh; fi'
+      script: 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then composer deploy:prod; fi'
 
 after_success:
     - travis_retry php vendor/bin/php-coveralls -v
