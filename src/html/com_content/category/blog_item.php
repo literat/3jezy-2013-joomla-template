@@ -5,50 +5,58 @@
  */
 defined('_JEXEC') or die();
 
-function createdDateOn($created)
-{
-    $html = '<dd class="create">';
-    $html .= JText::sprintf(
-        'COM_CONTENT_CREATED_DATE_ON',
-        JHtml::_('date', $created, JText::_('DATE_FORMAT_LC2'))
-    );
-    $html .= '</dd>';
+if (!function_exists('createdDateOn')) {
+    function createdDateOn($created)
+    {
+        $html = '<dd class="create">';
+        $html .= JText::sprintf(
+            'COM_CONTENT_CREATED_DATE_ON',
+            JHtml::_('date', $created, JText::_('DATE_FORMAT_LC2'))
+        );
+        $html .= '</dd>';
 
-    return html;
+        return html;
+    }
 }
 
-function lastUpdated($modified)
-{
-    $html = '<dd class="modified">';
-    $html .= JText::sprintf(
-        'COM_CONTENT_LAST_UPDATED',
-        JHtml::_('date', $modified, JText::_('DATE_FORMAT_LC2'))
-    );
-    $html .= '</dd>';
+if (!function_exists('lastUpdated')) {
+    function lastUpdated($modified)
+    {
+        $html = '<dd class="modified">';
+        $html .= JText::sprintf(
+            'COM_CONTENT_LAST_UPDATED',
+            JHtml::_('date', $modified, JText::_('DATE_FORMAT_LC2'))
+        );
+        $html .= '</dd>';
 
-    return html;
+        return html;
+    }
 }
 
-function writtenBy($contactId, $author)
-{
-    return JText::sprintf(
-        'COM_CONTENT_WRITTEN_BY',
-        JHtml::_(
-            'link',
-            JRoute::_('index.php?option=com_contact&view=contact&id=' . $contactId),
-            $author
-        )
-    );
+if (!function_exists('writtenBy')) {
+    function writtenBy($contactId, $author)
+    {
+        return JText::sprintf(
+            'COM_CONTENT_WRITTEN_BY',
+            JHtml::_(
+                'link',
+                JRoute::_('index.php?option=com_contact&view=contact&id=' . $contactId),
+                $author
+            )
+        );
+    }
 }
 
-function publishedDateOn($publishUp)
-{
-    $html = '<dd class="published">';
-    $html .= JText::sprintf(
-        'COM_CONTENT_PUBLISHED_DATE_ON',
-        JHtml::_('date', $publishUp, JText::_('DATE_FORMAT_LC2'))
-    );
-    $html .= '</dd>';
+if (!function_exists('publishedDateOn')) {
+    function publishedDateOn($publishUp)
+    {
+        $html = '<dd class="published">';
+        $html .= JText::sprintf(
+            'COM_CONTENT_PUBLISHED_DATE_ON',
+            JHtml::_('date', $publishUp, JText::_('DATE_FORMAT_LC2'))
+        );
+        $html .= '</dd>';
+    }
 }
 
 $params = &$this->item->params;
