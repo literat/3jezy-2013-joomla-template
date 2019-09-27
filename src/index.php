@@ -99,9 +99,9 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
             <!--<div class="logoheader">
                     <h1 id="logo">
                         <?php if ($logo) : ?>
-                        <img src="<?php echo $this->baseurl; ?>/<?php echo htmlspecialchars(
-    $logo
-); ?>"  alt="<?php echo htmlspecialchars($templateparams->get('sitetitle')); ?>" />
+                        <img src="
+                            <?php echo $this->baseurl; ?>/<?php echo htmlspecialchars($logo); ?>
+                        "  alt="<?php echo htmlspecialchars($templateparams->get('sitetitle')); ?>" />
                         <?php endif; ?>
                         <?php if (!$logo and $templateparams->get('sitetitle')) : ?>
                             <?php echo htmlspecialchars($templateparams->get('sitetitle')); ?>
@@ -145,9 +145,9 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
                             </a>
                         </span>
                         <span style="position:absolute; float:left; top:31px; left:180px;">
-                            <h1 style="font-weight:bold;color:white; font-size: 2.2em;"> <?php echo htmlspecialchars(
-    $config->get('sitename')
-); ?></h1>
+                            <h1 style="font-weight:bold;color:white; font-size: 2.2em;">
+                                <?php echo htmlspecialchars($config->get('sitename')); ?>
+                            </h1>
                         </span>
                         <?php if ($this->countModules('position-12')) : ?>
                         <div id="top"><jdoc:include type="modules" name="position-12"   /></div>

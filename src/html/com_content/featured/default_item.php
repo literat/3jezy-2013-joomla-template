@@ -48,6 +48,16 @@ function writtenBy($contactId, $author)
     );
 }
 
+function publishedDateOn($contactId, $author)
+{
+    $html = '<dd class="published">';
+    $html .= JText::sprintf(
+        'COM_CONTENT_PUBLISHED_DATE_ON',
+        JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC2'))
+    );
+    $html .= '</dd>';
+}
+
 ?>
 
 <?php if ($this->item->state == 0) : ?>
@@ -56,9 +66,9 @@ function writtenBy($contactId, $author)
 <?php if ($params->get('show_title')) : ?>
     <h2>
         <?php if ($params->get('link_titles') && $params->get('access-view')) : ?>
-            <a href="<?php echo JRoute::_(
-    ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)
-); ?>">
+            <a href="
+                <?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>
+            ">
             <?php echo $this->escape($this->item->title); ?></a>
         <?php else : ?>
             <?php echo $this->escape($this->item->title); ?>
@@ -154,14 +164,9 @@ function writtenBy($contactId, $author)
     echo lastUpdated($this->item->modified);
 }
 ?>
-<?php if ($params->get('show_publish_date')) : ?>
-        <dd class="published">
-        <?php echo JText::sprintf(
-    'COM_CONTENT_PUBLISHED_DATE_ON',
-    JHtml::_('date', $this->item->publish_up, JText::_('DATE_FORMAT_LC2'))
-); ?>
-        </dd>
-<?php endif; ?>
+<?php if ($params->get('show_publish_date')) {
+    echo publishedDateOn($this->item->publish_up);
+}?>
 <?php if ($params->get('show_author') && !empty($this->item->author)) : ?>
     <dd class="createdby">
         <?php $author = $this->item->author; ?>

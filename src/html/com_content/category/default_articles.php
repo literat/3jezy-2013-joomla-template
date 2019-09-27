@@ -5,6 +5,58 @@
  */
 defined('_JEXEC') or die();
 
+function contactLink($contactId)
+{
+    return JHtml::_(
+        'link',
+        JRoute::_('index.php?option=com_contact&view=contact&id=' . $contactId),
+        $author
+    );
+}
+
+function createdList($date, $listDirn, $listOrder)
+{
+    return JHtml::_(
+        'grid.sort',
+        'COM_CONTENT_' . $date . '_DATE',
+        'a.created',
+        $listDirn,
+        $listOrder
+    );
+}
+
+function modifiedList($date, $listDirn, $listOrder)
+{
+    return JHtml::_(
+        'grid.sort',
+        'COM_CONTENT_' . $date . '_DATE',
+        'a.modified',
+        $listDirn,
+        $listOrder
+    );
+}
+
+
+function pubsihedList($date, $listDirn, $listOrder)
+{
+    return JHtml::_(
+        'grid.sort',
+        'COM_CONTENT_' . $date . '_DATE',
+        'a.publish_up',
+        $listDirn,
+        $listOrder
+    );
+}
+
+function dateHtml($displayDate, $dateFormat)
+{
+    return JHtml::_(
+        'date',
+        $displayDate,
+        $dateFormat
+    );
+}
+
 $app = JFactory::getApplication();
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
@@ -32,14 +84,14 @@ $listDirn = $this->escape($this->state->get('list.direction'));
         </legend>
 
         <div class="filter-search">
-            <label class="filter-search-lbl" for="filter-search"><?php echo JText::_(
-    'COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL'
-) . '&#160;'; ?></label>
-            <input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape(
-    $this->state->get('list.filter')
-); ?>" class="inputbox" onchange="document.adminForm.submit();" title="<?php echo JText::_(
-    'COM_CONTENT_FILTER_SEARCH_DESC'
-); ?>" />
+            <label class="filter-search-lbl" for="filter-search">
+                <?php echo JText::_('COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL') . '&#160;'; ?>
+            </label>
+            <input type="text" name="filter-search" id="filter-search" value="
+                <?php echo $this->escape($this->state->get('list.filter')); ?>
+            " class="inputbox" onchange="document.adminForm.submit();" title="
+                <?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>
+            " />
         </div>
     <?php endif; ?>
 
@@ -67,31 +119,13 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 
                 <?php if ($date = $this->params->get('list_show_date')) : ?>
                 <th class="list-date" id="tableOrdering2">
-                    <?php if ($date == 'created') : ?>
-                        <?php echo JHtml::_(
-    'grid.sort',
-    'COM_CONTENT_' . $date . '_DATE',
-    'a.created',
-    $listDirn,
-    $listOrder
-); ?>
-                    <?php elseif ($date == 'modified') : ?>
-                        <?php echo JHtml::_(
-    'grid.sort',
-    'COM_CONTENT_' . $date . '_DATE',
-    'a.modified',
-    $listDirn,
-    $listOrder
-); ?>
-                    <?php elseif ($date == 'published') : ?>
-                        <?php echo JHtml::_(
-    'grid.sort',
-    'COM_CONTENT_' . $date . '_DATE',
-    'a.publish_up',
-    $listDirn,
-    $listOrder
-); ?>
-                    <?php endif; ?>
+                    <?php if ($date == 'created') {
+    echo createdList($date, $listDirn, $listOrder);
+} elseif ($date == 'modified') {
+    echo modifiedList($date, $listDirn, $listOrder);
+} elseif ($date == 'published') {
+    echo publishedList($date, $listDirn, $listOrder);
+} ?>
                 </th>
                 <?php endif; ?>
 
@@ -117,19 +151,16 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 
                 <?php if (in_array($article->access, $this->user->getAuthorisedViewLevels(), true)) : ?>
                     <td class="list-title">
-                        <a href="<?php echo JRoute::_(
-    ContentHelperRoute::getArticleRoute($article->slug, $article->catid)
-); ?>">
-                            <?php echo $this->escape($article->title); ?></a>
+                        <a href="
+                            <?php echo JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid)); ?>
+                        ">
+                            <?php echo $this->escape($article->title); ?>
+                        </a>
                     </td>
 
                     <?php if ($this->params->get('list_show_date')) : ?>
                     <td class="list-date">
-                        <?php echo JHtml::_(
-    'date',
-    $article->displayDate,
-    $this->escape($this->params->get('date_format', JText::_('DATE_FORMAT_LC3')))
-); ?>
+                        <?php echo dateHtml($article->displayDate, $this->escape($this->params->get('date_format', JText::_('DATE_FORMAT_LC3')))) ?>
                     </td>
                     <?php endif; ?>
 
@@ -139,16 +170,11 @@ $listDirn = $this->escape($this->state->get('list.direction'));
                             <?php $author = $article->author; ?>
                             <?php $author = $article->created_by_alias ? $article->created_by_alias : $author; ?>
 
-                            <?php if (!empty($article->contactid) && $this->params->get('link_author') == true) : ?>
-                                <?php echo JHtml::_(
-    'link',
-    JRoute::_('index.php?option=com_contact&view=contact&id=' . $article->contactid),
-    $author
-); ?>
-
-                            <?php else : ?>
-                                <?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author); ?>
-                            <?php endif; ?>
+                            <?php if (!empty($article->contactid) && $this->params->get('link_author') == true) {
+    echo contactLink($article->contactid);
+} else {
+    echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author);
+} ?>
                         <?php endif; ?>
                     </td>
                     <?php endif; ?>

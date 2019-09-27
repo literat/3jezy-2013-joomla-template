@@ -5,6 +5,16 @@
  */
 defined('_JEXEC') or die();
 
+function categoryDescription($description)
+{
+    return JHtml::_(
+        'content.prepare',
+        $description,
+        '',
+        'com_content.category'
+    );
+}
+
 $app = JFactory::getApplication();
 $templateparams = $app->getTemplate(true)->params;
 
@@ -24,21 +34,18 @@ $class = ' class="first"';
                     endif; ?>
                 <li<?php echo $class; ?>>
                         <?php $class = ''; ?>
-                        <span class="item-title"><a href="<?php echo JRoute::_(
-                        ContentHelperRoute::getCategoryRoute($child->id)
-                    ); ?>">
-                                <?php echo $this->escape($child->title); ?></a>
+                        <span class="item-title">
+                            <a href="
+                                <?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($child->id)); ?>
+                            ">
+                                <?php echo $this->escape($child->title); ?>
+                            </a>
                         </span>
 
                         <?php if ($this->params->get('show_subcat_desc') == 1) : ?>
                         <?php if ($child->description) : ?>
                                 <div class="category-desc">
-                                        <?php echo JHtml::_(
-                        'content.prepare',
-                        $child->description,
-                        '',
-                        'com_content.category'
-                    ); ?>
+                                    <?php echo categoryDescription($child->description); ?>
                                 </div>
                         <?php endif; ?>
                         <?php endif; ?>

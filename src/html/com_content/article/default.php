@@ -5,6 +5,42 @@
  */
 defined('_JEXEC') or die();
 
+function createdDateOn($created)
+{
+    $html = '<dd class="create">';
+    $html .= JText::sprintf(
+        'COM_CONTENT_CREATED_DATE_ON',
+        JHtml::_('date', $created, JText::_('DATE_FORMAT_LC2'))
+    );
+    $html .= '</dd>';
+
+    return html;
+}
+
+function lastUpdated($modified)
+{
+    $html = '<dd class="modified">';
+    $html .= JText::sprintf(
+        'COM_CONTENT_LAST_UPDATED',
+        JHtml::_('date', $modified, JText::_('DATE_FORMAT_LC2'))
+    );
+    $html .= '</dd>';
+
+    return html;
+}
+
+function writtenBy($contactId, $author)
+{
+    return JText::sprintf(
+        'COM_CONTENT_WRITTEN_BY',
+        JHtml::_(
+            'link',
+            JRoute::_('index.php?option=com_contact&view=contact&id=' . $contactId),
+            $author
+        )
+    );
+}
+
 $app = JFactory::getApplication();
 $templateparams = $app->getTemplate(true)->params;
 $images = json_decode($this->item->images);
@@ -122,46 +158,28 @@ if ($params->get('show_title')) : ?>
                 <?php echo JText::sprintf('COM_CONTENT_CATEGORY', $title); ?>
             <?php endif; ?>
         </dd>
-<?php endif; ?>
-<?php if ($params->get('show_create_date')) : ?>
-        <dd class="create">
-        <?php echo JText::sprintf(
-                'COM_CONTENT_CREATED_DATE_ON',
-                JHtml::_('date', $this->item->created, JText::_('DATE_FORMAT_LC2'))
-            ); ?>
-        </dd>
-<?php endif; ?>
-<?php if ($params->get('show_modify_date')) : ?>
-        <dd class="modified">
-        <?php echo JText::sprintf(
-                'COM_CONTENT_LAST_UPDATED',
-                JHtml::_('date', $this->item->modified, JText::_('DATE_FORMAT_LC2'))
-            ); ?>
-        </dd>
-<?php endif; ?>
-<?php if ($params->get('show_publish_date')) : ?>
+        <?php endif; ?>
+        <?php if ($params->get('show_create_date')) {
+                echo createdDateOn($this->item->created);
+            } ?>
+        <?php if ($params->get('show_modify_date')) {
+                echo lastUpdated($this->item->modified);
+            } ?>
+        <?php if ($params->get('show_publish_date')) : ?>
         <dd class="published">
-        <?php echo JText::sprintf(
+            <?php echo JText::sprintf(
                 'COM_CONTENT_PUBLISHED_DATE_ON',
                 JHtml::_('date', $this->item->publish_up, JText::_('DATE_FORMAT_LC2'))
             ); ?>
         </dd>
-<?php endif; ?>
+        <?php endif; ?>
 <?php if ($params->get('show_author') && !empty($this->item->author)) : ?>
     <dd class="createdby">
         <?php $author = $this->item->author; ?>
         <?php $author = $this->item->created_by_alias ? $this->item->created_by_alias : $author; ?>
 
             <?php if (!empty($this->item->contactid) && $params->get('link_author') == true) : ?>
-                <?php echo JText::sprintf(
-                'COM_CONTENT_WRITTEN_BY',
-                JHtml::_(
-                    'link',
-                    JRoute::_('index.php?option=com_contact&view=contact&id=' . $this->item->contactid),
-                    $author
-                )
-            ); ?>
-
+                <?php echo writtenBy($this->contactid, $author); ?>
             <?php else : ?>
                 <?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author); ?>
             <?php endif; ?>

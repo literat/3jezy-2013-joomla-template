@@ -5,6 +5,16 @@
  */
 defined('_JEXEC') or die();
 
+function categoriesDescription($params)
+{
+    return JHtml::_(
+        'content.prepare',
+        $params->get('categories_description'),
+        '',
+        'com_content.categories'
+    );
+}
+
 $app = JFactory::getApplication();
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 ?>
@@ -19,12 +29,7 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
     //If there is a description in the menu parameters use that;
     ?>
         <?php if ($this->params->get('categories_description')) : ?>
-            <?php echo JHtml::_(
-        'content.prepare',
-        $this->params->get('categories_description'),
-        '',
-        'com_content.categories'
-    ); ?>
+            <?php echo categoriesDescription($this->params) ?>
         <?php
             //Otherwise get one from the database if it exists.
             //Otherwise get one from the database if it exists.
