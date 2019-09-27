@@ -1,12 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package    Joomla.Site
- * @subpackage Templates.3JEZY
- *
  * @copyright 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license   GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
 
 JLoader::import('joomla.filesystem.file');
@@ -33,25 +29,42 @@ $this->direction = $doc->direction;
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="language" content="<?php echo $this->language; ?>" />
     <title><?php echo $this->error->getCode(); ?> - <?php echo $this->title; ?></title>
-<?php if ($this->error->getCode() >= 400 && $this->error->getCode() < 500) { ?>
-    <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/system/css/system.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/position.css" type="text/css" media="screen,projection" />
-    <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/layout.css" type="text/css" media="screen,projection" />
-    <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/print.css" type="text/css" media="Print" />
-    <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/<?php echo htmlspecialchars(
-    $color
-); ?>.css" type="text/css" />
+<?php if ($this->error->getCode() >= 400 && $this->error->getCode() < 500) {
+    echo sprintf(
+        '<link rel="stylesheet" href="%s/templates/system/css/system.css" type="text/css" />',
+        $this->baseurl
+    );
+    echo sprintf(
+        '<link rel="stylesheet" href="%s/templates/%s/css/position.css" type="text/css" media="screen,projection" />',
+        $this->baseurl,
+        $this->template
+    );
+    echo sprintf(
+        '<link rel="stylesheet" href="%s/templates/%s/css/layout.css" type="text/css" media="screen,projection" />',
+        $this->baseurl,
+        $this->template
+    );
+    echo sprintf(
+        '<link rel="stylesheet" href="%s/templates/%s/css/print.css" type="text/css" media="Print" />',
+        $this->baseurl,
+        $this->template
+    );
+    echo sprintf(
+        '<link rel="stylesheet" href="%s/templates/%s/css/%s.css" type="text/css" />',
+        $this->baseurl,
+        $this->template,
+        htmlspecialchars($color)
+    ); ?>
     <?php
     $files = JHtml::_('stylesheet', 'templates/' . $this->template . '/css/general.css', null, false, true);
     if ($files) :
         if (!is_array($files)) :
-            $files = array($files);
-        endif;
-        foreach ($files as $file) : ?>
+            $files = [$files];
+    endif;
+    foreach ($files as $file) : ?>
     <link rel="stylesheet" href="<?php echo $file; ?>" type="text/css" />
     <?php endforeach;
-    endif;
-    ?>
+    endif; ?>
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/<?php echo htmlspecialchars(
         $color
     ); ?>.css" type="text/css" />
@@ -86,34 +99,20 @@ $this->direction = $doc->direction;
                 <span style="position:absolute; float:left; top:36px; left:220px;">
                     <h1 style="font-weight:bold;color:white; font-size: 2.2em;"> | Napříč Prahou - přes tři jezy</h1>
                 </span>
-                    <!--<div class="logoheader">
-                        <?php
-                        $params = JFactory::getApplication()->getTemplate(true)->params;
-                        $logo = $params->get('logo');
-                        ?>
-                    <h1 id="logo">
-                                        <?php if ($logo) : ?>
-                                        <img src="<?php echo $this->baseurl; ?>/<?php echo htmlspecialchars(
-                            $logo
-                        ); ?>"  alt="<?php echo htmlspecialchars($params->get('sitetitle')); ?>" />
-                                        <?php endif; ?>
-                                        <?php if (!$logo) : ?>
-                                        <?php echo htmlspecialchars($params->get('sitetitle')); ?>
-                                        <?php endif; ?>
-                                        <span class="header1">
-                                        <?php echo htmlspecialchars($params->get('sitedescription')); ?>
-                                        </span></h1>
-                    </div>--><!-- end logoheader -->
-                        <ul class="skiplinks">
-                            <li><a href="#wrapper2" class="u2"><?php echo JText::_(
-                                            'TPL_3JEZY_SKIP_TO_ERROR_CONTENT'
-                                        ); ?></a></li>
-                            <li><a href="#nav" class="u2"><?php echo JText::_(
-                                'TPL_3JEZY_ERROR_JUMP_TO_NAV'
-                            ); ?></a></li>
-                        </ul>
-                        <div id="line"></div>
-                </div><!-- end header -->
+                <ul class="skiplinks">
+                    <li>
+                        <a href="#wrapper2" class="u2">
+                            <?php echo JText::_('TPL_3JEZY_SKIP_TO_ERROR_CONTENT'); ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#nav" class="u2">
+                            <?php echo JText::_('TPL_3JEZY_ERROR_JUMP_TO_NAV'); ?>
+                        </a>
+                    </li>
+                </ul>
+                <div id="line"></div>
+            </div><!-- end header -->
         <div id="contentarea2" >
                     <!-- end navi -->
             <div id="wrapper2">
@@ -126,8 +125,7 @@ $this->direction = $doc->direction;
                                     <p><?php echo JText::_('JERROR_LAYOUT_SEARCH'); ?></p>
                                     <?php
                                     $module = JModuleHelper::getModule('search');
-                                    echo JModuleHelper::renderModule($module);
-                                    ?>
+    echo JModuleHelper::renderModule($module); ?>
                                     </div>
                                 <?php endif; ?>
                                 <div>
@@ -139,7 +137,7 @@ $this->direction = $doc->direction;
         </div><!-- end contentarea -->
                         <?php if ($this->debug) :
                             echo $this->renderBacktrace();
-                        endif; ?>
+    endif; ?>
             </div>  <!--end all -->
         </div>
     </div>
@@ -147,11 +145,12 @@ $this->direction = $doc->direction;
     </footer>
 </body>
 </html>
-<?php } else { ?>
+<?php
+} else { ?>
 <?php if (!isset($this->error)) {
-                            $this->error = JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
-                            $this->debug = false;
-                        } ?>
+        $this->error = JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+        $this->debug = false;
+    } ?>
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/system/css/error.css" type="text/css" />
 </head>
 <body>
@@ -169,18 +168,27 @@ $this->direction = $doc->direction;
                     <li><?php echo JText::_('JERROR_LAYOUT_REQUESTED_RESOURCE_WAS_NOT_FOUND'); ?></li>
                     <li><?php echo JText::_('JERROR_LAYOUT_ERROR_HAS_OCCURRED_WHILE_PROCESSING_YOUR_REQUEST'); ?></li>
                 </ol>
-            <p><strong><?php echo JText::_('JERROR_LAYOUT_PLEASE_TRY_ONE_OF_THE_FOLLOWING_PAGES'); ?></strong></p>
-
-                <ul>
-                    <li><a href="<?php echo $this->baseurl; ?>/index.php" title="<?php echo JText::_(
-                            'JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'
-                        ); ?>"><?php echo JText::_('JERROR_LAYOUT_HOME_PAGE'); ?></a></li>
-                    <li><a href="<?php echo $this->baseurl; ?>/index.php?option=com_search" title="<?php echo JText::_(
-                        'JERROR_LAYOUT_SEARCH_PAGE'
-                    ); ?>"><?php echo JText::_('JERROR_LAYOUT_SEARCH_PAGE'); ?></a></li>
-
-                </ul>
-
+            <p>
+                <strong>
+                    <?php echo JText::_('JERROR_LAYOUT_PLEASE_TRY_ONE_OF_THE_FOLLOWING_PAGES'); ?>
+                </strong>
+            </p>
+            <ul>
+                <li>
+                    <a href="<?php echo $this->baseurl; ?>/index.php" title="
+                        <?php echo JText::_('JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'); ?>
+                    ">
+                        <?php echo JText::_('JERROR_LAYOUT_HOME_PAGE'); ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->baseurl; ?>/index.php?option=com_search" title="
+                    <?php echo JText::_('JERROR_LAYOUT_SEARCH_PAGE'); ?>
+                    ">
+                        <?php echo JText::_('JERROR_LAYOUT_SEARCH_PAGE'); ?>
+                    </a>
+                </li>
+            </ul>
             <p><?php echo JText::_('JERROR_LAYOUT_PLEASE_CONTACT_THE_SYSTEM_ADMINISTRATOR'); ?>.</p>
             <div id="techinfo">
             <p><?php echo $this->error->getMessage(); ?></p>
@@ -196,6 +204,5 @@ $this->direction = $doc->direction;
     </div>
 </body>
 </html>
-
 
 <?php } ?>

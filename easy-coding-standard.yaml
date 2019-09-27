@@ -1,4 +1,0 @@
-imports:
-    - {
-          resource: "%vendor_dir%/symplify/easy-coding-standard/config/set/psr2.yaml",
-      }

@@ -1,12 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  Templates.beez3
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
 
 // Create a shortcut for params.
@@ -15,6 +11,43 @@ $params = &$this->item->params;
 $images = json_decode($this->item->images);
 $app = JFactory::getApplication();
 $templateparams = $app->getTemplate(true)->params;
+
+function createdDateOn($created)
+{
+    $html = '<dd class="create">';
+    $html .= JText::sprintf(
+        'COM_CONTENT_CREATED_DATE_ON',
+        JHtml::_('date', $created, JText::_('DATE_FORMAT_LC2'))
+    );
+    $html .= '</dd>';
+
+    return html;
+}
+
+function lastUpdated($modified)
+{
+    $html = '<dd class="modified">';
+    $html .= JText::sprintf(
+        'COM_CONTENT_LAST_UPDATED',
+        JHtml::_('date', $modified, JText::_('DATE_FORMAT_LC2'))
+    );
+    $html .= '</dd>';
+
+    return html;
+}
+
+function writtenBy($contactId, $author)
+{
+    return JText::sprintf(
+        'COM_CONTENT_WRITTEN_BY',
+        JHtml::_(
+            'link',
+            JRoute::_('index.php?option=com_contact&view=contact&id=' . $contactId),
+            $author
+        )
+    );
+}
+
 ?>
 
 <?php if ($this->item->state == 0) : ?>
@@ -113,28 +146,20 @@ $templateparams = $app->getTemplate(true)->params;
             <?php endif; ?>
         </dd>
 <?php endif; ?>
-<?php if ($params->get('show_create_date')) : ?>
-        <dd class="create">
-        <?php echo JText::sprintf(
-                'COM_CONTENT_CREATED_DATE_ON',
-                JHtml::_('date', $this->item->created, JText::_('DATE_FORMAT_LC2'))
-            ); ?>
-        </dd>
-<?php endif; ?>
-<?php if ($params->get('show_modify_date')) : ?>
-        <dd class="modified">
-        <?php echo JText::sprintf(
-                'COM_CONTENT_LAST_UPDATED',
-                JHtml::_('date', $this->item->modified, JText::_('DATE_FORMAT_LC2'))
-            ); ?>
-        </dd>
-<?php endif; ?>
+<?php if ($params->get('show_create_date')) {
+                echo createdDateOn($this->item->created);
+            }
+?>
+<?php if ($params->get('show_modify_date')) {
+    echo lastUpdated($this->item->modified);
+}
+?>
 <?php if ($params->get('show_publish_date')) : ?>
         <dd class="published">
         <?php echo JText::sprintf(
-                'COM_CONTENT_PUBLISHED_DATE_ON',
-                JHtml::_('date', $this->item->publish_up, JText::_('DATE_FORMAT_LC2'))
-            ); ?>
+    'COM_CONTENT_PUBLISHED_DATE_ON',
+    JHtml::_('date', $this->item->publish_up, JText::_('DATE_FORMAT_LC2'))
+); ?>
         </dd>
 <?php endif; ?>
 <?php if ($params->get('show_author') && !empty($this->item->author)) : ?>
@@ -143,15 +168,7 @@ $templateparams = $app->getTemplate(true)->params;
         <?php $author = $this->item->created_by_alias ? $this->item->created_by_alias : $author; ?>
 
             <?php if (!empty($this->item->contactid) && $params->get('link_author') == true) : ?>
-                <?php echo JText::sprintf(
-                'COM_CONTENT_WRITTEN_BY',
-                JHtml::_(
-                    'link',
-                    JRoute::_('index.php?option=com_contact&view=contact&id=' . $this->item->contactid),
-                    $author
-                )
-            ); ?>
-
+                <?php echo writtenBy($this->item->contactid, $author); ?>
             <?php else : ?>
                 <?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author); ?>
             <?php endif; ?>

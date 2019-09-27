@@ -1,12 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  Template.beez5
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
 
 $app = JFactory::getApplication();
@@ -27,12 +23,12 @@ if (!$templateparams->get('html5', 0)) {
     <legend class="hidelabeltxt"><?php echo JText::_('JGLOBAL_FILTER_LABEL'); ?></legend>
     <div class="filter-search">
         <?php if ($this->params->get('filter_field') != 'hide') : ?>
-        <label class="filter-search-lbl" for="filter-search"><?php echo JText::_(
-        'COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL'
-    ) . '&#160;'; ?></label>
-        <input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape(
-            $this->filter
-        ); ?>" class="inputbox" onchange="document.getElementById('adminForm').submit();" />
+        <label class="filter-search-lbl" for="filter-search">
+            <?php echo JText::_('COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL') . '&#160;'; ?>
+        </label>
+        <input type="text" name="filter-search" id="filter-search" value="
+            <?php echo $this->escape($this->filter); ?>
+        " class="inputbox" onchange="document.getElementById('adminForm').submit();" />
         <?php endif; ?>
 
         <?php echo $this->form->monthField; ?>

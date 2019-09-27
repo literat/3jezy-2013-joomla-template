@@ -1,0 +1,34 @@
+imports:
+    - resource: '%vendor_dir%/lmc/coding-standard/easy-coding-standard.yaml'
+
+services:
+    SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff: # goes to an infinite loop on some files under PHP 7.2
+        class: stdClass
+
+parameters:
+    skip:
+        # globally skipped
+        PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff: ~
+        Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff: ~
+        PHP_CodeSniffer\Standards\PSR2\Sniffs\ControlStructures\ControlStructureSpacingSniff.SpacingAfterOpenBrace: ~
+        PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\ControlStructureSpacingSniff.SpacingAfterOpenBrace: ~
+        PHP_CodeSniffer\Standards\Generic\Sniffs\Commenting\DocCommentSniff.ShortNotCapital: ~
+        PHP_CodeSniffer\Standards\Generic\Sniffs\Commenting\DocCommentSniff.LongNotCapital: ~
+        SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff.ReferencedGeneralException: ~
+        PhpCsFixer\Fixer\FunctionNotation\VoidReturnFixer: ~
+        PhpCsFixer\Fixer\Alias\NoAliasFunctionsFixer: ~
+        PhpCsFixer\Fixer\Alias\MbStrFunctionsFixer: ~
+        PhpCsFixer\Fixer\ControlStructure\NoUselessElseFixer: ~
+        PhpCsFixer\Fixer\ListNotation\ListSyntaxFixer: ~
+        PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer: ~
+        PhpCsFixer\Fixer\Phpdoc\PhpdocAddMissingParamAnnotationFixer: ~
+        PhpCsFixer\Fixer\FunctionNotation\FopenFlagsFixer: ~
+
+        # specific files
+        PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff.Found:
+            - src/Kernel.php
+            - src/Service/Example/Adapter.php
+
+    exclude_files:
+        - tests/bootstrap.php
+        - '*Debug*.php'

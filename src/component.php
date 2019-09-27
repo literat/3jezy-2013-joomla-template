@@ -1,12 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package    Joomla.Site
- * @subpackage Templates.beez3
- *
  * @copyright 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license   GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
 
 $doc = JFactory::getDocument();
@@ -37,7 +33,7 @@ $doc->addStyleSheet(
 $files = JHtml::_('stylesheet', 'templates/' . $this->template . '/css/general.css', null, false, true);
 if ($files) :
     if (!is_array($files)) :
-        $files = array($files);
+        $files = [$files];
     endif;
     foreach ($files as $file) :
         $doc->addStyleSheet($file);

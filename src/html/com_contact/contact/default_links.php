@@ -1,12 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  com_contact
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
 
 if ($this->params->get('presentation_style') == 'sliders') : ?>
@@ -33,10 +29,10 @@ if ($this->params->get('presentation_style') == 'sliders') : ?>
                         if (!$link) :
                             continue;
                         endif; // Add 'http://' if not present
-                        $link = 0 === strpos(
+                        $link = mb_strpos(
                             $link,
                             'http'
-                        ) ? $link : 'http://' . $link; // If no label is present, take the link
+                        ) === 0 ? $link : 'http://' . $link; // If no label is present, take the link
                         $label = $label ? $label : $link;
                         ?>
                         <li>

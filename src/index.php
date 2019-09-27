@@ -1,9 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package    Joomla.Site
- * @subpackage Templates.3jezy.2017
- * @copyright  2012 - 2013 Tomas Litera, Inc. All rights reserved.
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright 2012 - 2013 Tomas Litera, Inc. All rights reserved.
+ * @license   GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // No direct access.
@@ -39,7 +37,7 @@ $bootstrap = explode(',', $templateparams->get('bootstrap'));
 $jinput = JFactory::getApplication()->input;
 $option = $jinput->get('option', '', 'cmd');
 
-if (in_array($option, $bootstrap)) {
+if (in_array($option, $bootstrap, true)) {
     // Load optional rtl Bootstrap css and Bootstrap bugfixes
     JHtmlBootstrap::loadCss($includeMaincss = true, $this->direction);
 }
@@ -76,7 +74,7 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
 $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/hide.js', 'text/javascript');
 $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/respond.src.js', 'text/javascript');
 
-#####################################################################################################################
+
 ?>
 
 <!DOCTYPE html>
@@ -171,7 +169,7 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
                     <!--<h2 class="unseen">
                         <?php echo JText::_('TPL_BEEZ3_ADDITIONAL_INFORMATION'); ?>
                     </h2>-->
-<!--					<div id="close">
+<!-- <div id="close">
                         <a href="#" onclick="auf('right')">
                             <span id="bild">
                                 <?php echo JText::_('TPL_BEEZ3_TEXTRIGHTCLOSE'); ?>
@@ -193,7 +191,7 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
                         <!--end of position-menu-->
                         <jdoc:include type="modules" name="position-4" style="beezHide" headerLevel="3" state="0 " />
                     </nav><!-- end navi -->
-                <?php endif; ?>
+                    <?php endif; ?>
                 <div id="mini-nav">
                     <!--start of position-mini-nav-->
                     <div><jdoc:include type="modules" name="position-9" style="beezDivision" headerlevel="3" /></div>

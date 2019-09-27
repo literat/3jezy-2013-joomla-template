@@ -1,12 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  com_contact
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidation');
@@ -15,13 +11,12 @@ if (isset($this->error)) : ?>
     <div class="contact-error">
         <?php echo $this->error; ?>
     </div>
-<?php endif;
-?>
+<?php endif; ?>
 
 <div class="contact-form">
-    <form id="contact-form" action="<?php echo JRoute::_(
-    'index.php'
-); ?>" method="post" class="form-validate form-horizontal">
+    <form id="contact-form" action="
+        <?php echo JRoute::_('index.php'); ?>
+    " method="post" class="form-validate form-horizontal">
         <fieldset>
             <legend><?php echo JText::_('COM_CONTACT_FORM_LABEL'); ?></legend>
             <div class="control-group">
@@ -71,9 +66,10 @@ if (isset($this->error)) : ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <div class="form-actions"><button class="btn btn-primary validate" type="submit"><?php echo JText::_(
-    'COM_CONTACT_CONTACT_SEND'
-); ?></button>
+                <div class="form-actions">
+                    <button class="btn btn-primary validate" type="submit">
+                        <?php echo JText::_('COM_CONTACT_CONTACT_SEND'); ?>
+                    </button>
                     <input type="hidden" name="option" value="com_contact" />
                     <input type="hidden" name="task" value="contact.submit" />
                     <input type="hidden" name="return" value="<?php echo $this->return_page; ?>" />

@@ -1,13 +1,19 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  com_contact
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
+
+function categoriesDescription($params)
+{
+    return JHtml::_(
+        'content.prepare',
+        $params->get('categories_description'),
+        '',
+        'com_contact.categories'
+    );
+}
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 ?>
@@ -23,13 +29,8 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
         ?>
         <?php if ($this->params->get('categories_description')) : ?>
         <div class="category-desc base-desc">
-            <?php echo JHtml::_(
-            'content.prepare',
-            $this->params->get('categories_description'),
-            '',
-            'com_contact.categories'
-        ); ?>
-            </div>
+            <?php echo categoriesDescription($this->params); ?>
+        </div>
         <?php
             //Otherwise get one from the database if it exists.
             //Otherwise get one from the database if it exists.

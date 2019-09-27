@@ -1,12 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  Templates.beez3
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
 
 $app = JFactory::getApplication();
@@ -119,7 +115,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
             <?php foreach ($this->items as $i => &$article) : ?>
             <tr class="cat-list-row<?php echo $i % 2; ?>">
 
-                <?php if (in_array($article->access, $this->user->getAuthorisedViewLevels())) : ?>
+                <?php if (in_array($article->access, $this->user->getAuthorisedViewLevels(), true)) : ?>
                     <td class="list-title">
                         <a href="<?php echo JRoute::_(
     ContentHelperRoute::getArticleRoute($article->slug, $article->catid)

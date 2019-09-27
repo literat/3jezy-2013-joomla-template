@@ -1,20 +1,19 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package    Joomla.Site
- * @subpackage Templates.3jezy.2017
- *
  * @copyright 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license   GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
 
 /**
  * 3jezyDivision chrome.
  *
  * @since 1.0
+ * @param mixed $module
+ * @param mixed $params
+ * @param mixed $attribs
  */
-function modChrome_3jezyDivision($module, $params, $attribs)
+function modChrome_3jezyDivision($module, $params, $attribs): void
 {
     $headerLevel = isset($attribs['headerLevel']) ? (int) $attribs['headerLevel'] : 3;
     if (!empty($module->content)) {
@@ -31,8 +30,11 @@ function modChrome_3jezyDivision($module, $params, $attribs)
  * 3jezyHide chrome.
  *
  * @since 1.0
+ * @param mixed $module
+ * @param mixed $params
+ * @param mixed $attribs
  */
-function modChrome_3jezyHide($module, $params, $attribs)
+function modChrome_3jezyHide($module, $params, $attribs): void
 {
     $headerLevel = isset($attribs['headerLevel']) ? (int) $attribs['headerLevel'] : 3;
     $state = isset($attribs['state']) ? (int) $attribs['state'] : 0;
@@ -74,8 +76,11 @@ function modChrome_3jezyHide($module, $params, $attribs)
  * 3jezyTabs chrome.
  *
  * @since 1.0
+ * @param mixed $module
+ * @param mixed $params
+ * @param mixed $attribs
  */
-function modChrome_3jezyTabs($module, $params, $attribs)
+function modChrome_3jezyTabs($module, $params, $attribs): void
 {
     $area = isset($attribs['id']) ? (int) $attribs['id'] : '1';
     $area = 'area-' . $area;
@@ -85,7 +90,7 @@ function modChrome_3jezyTabs($module, $params, $attribs)
 
     if ($modulecount < 1) {
         $modulecount = count(JModuleHelper::getModules($attribs['name']));
-        $modules = array();
+        $modules = [];
     }
 
     if ($modulecount == 1) {

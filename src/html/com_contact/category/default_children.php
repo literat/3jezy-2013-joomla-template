@@ -1,12 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  com_contact
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
 $class = ' class="first"';
 if (count($this->children[$this->category->id]) > 0 && $this->maxLevel != 0) : ?>
@@ -18,10 +14,12 @@ if (count($this->children[$this->category->id]) > 0 && $this->maxLevel != 0) : ?
         } ?>
     <li<?php echo $class; ?>>
         <?php $class = ''; ?>
-            <span class="item-title"><a href="<?php echo JRoute::_(
-            ContactHelperRoute::getCategoryRoute($child->id)
-        ); ?>">
-                <?php echo $this->escape($child->title); ?></a>
+            <span class="item-title">
+                <a href="
+                    <?php echo JRoute::_(ContactHelperRoute::getCategoryRoute($child->id)); ?>
+                ">
+                    <?php echo $this->escape($child->title); ?>
+                </a>
             </span>
 
             <?php if ($this->params->get('show_subcat_desc') == 1) : ?>

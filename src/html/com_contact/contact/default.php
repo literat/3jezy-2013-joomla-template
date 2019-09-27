@@ -1,13 +1,22 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  com_contact
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
+
+function genericList($contacts, $contact)
+{
+    return JHtml::_(
+        'select.genericlist',
+        $contacts,
+        'id',
+        'class="inputbox" onchange="document.location.href = this.value"',
+        'link',
+        'name',
+        $contact->link
+    );
+}
 
 $cparams = JComponentHelper::getParams('com_media');
 ?>
@@ -40,15 +49,7 @@ $cparams = JComponentHelper::getParams('com_media');
     <?php if ($this->params->get('show_contact_list') && count($this->contacts) > 1) : ?>
         <form action="#" method="get" name="selectForm" id="selectForm">
             <?php echo JText::_('COM_CONTACT_SELECT_CONTACT'); ?>
-            <?php echo JHtml::_(
-    'select.genericlist',
-    $this->contacts,
-    'id',
-    'class="inputbox" onchange="document.location.href = this.value"',
-    'link',
-    'name',
-    $this->contact->link
-); ?>
+            <?php echo genericList($this->contacts, $this->contact); ?>
         </form>
     <?php endif; ?>
 
@@ -68,9 +69,9 @@ $cparams = JComponentHelper::getParams('com_media');
     <?php endif; ?>
     <?php if ($this->contact->image && $this->params->get('show_image')) : ?>
         <div class="thumbnail pull-right">
-            <?php echo JHtml::_('image', $this->contact->image, JText::_('COM_CONTACT_IMAGE_DETAILS'), array(
+            <?php echo JHtml::_('image', $this->contact->image, JText::_('COM_CONTACT_IMAGE_DETAILS'), [
                 'align' => 'middle',
-            )); ?>
+            ]); ?>
         </div>
     <?php endif; ?>
 

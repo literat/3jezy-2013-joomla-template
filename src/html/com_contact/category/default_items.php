@@ -1,13 +1,20 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  com_contact
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die();
+
+function contactEmailNameLabel($listDirn, $listOrder)
+{
+    return JHtml::_(
+        'grid.sort',
+        'COM_CONTACT_CONTACT_EMAIL_NAME_LABEL',
+        'a.name',
+        $listDirn,
+        $listOrder
+    );
+}
 
 JHtml::_('behavior.framework');
 
@@ -35,13 +42,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
         <thead><tr>
 
             <th class="item-title">
-                <?php echo JHtml::_(
-    'grid.sort',
-    'COM_CONTACT_CONTACT_EMAIL_NAME_LABEL',
-    'a.name',
-    $listDirn,
-    $listOrder
-); ?>
+                <?php echo contactEmailNameLabel($listDirn, $listOrder); ?>
             </th>
             <?php if ($this->params->get('show_position_headings')) : ?>
             <th class="item-position">
@@ -102,10 +103,11 @@ $listDirn = $this->escape($this->state->get('list.direction'));
                 <?php endif; ?>
 
                     <td class="item-title">
-                        <a href="<?php echo JRoute::_(
-    ContactHelperRoute::getContactRoute($item->slug, $item->catid)
-); ?>">
-                            <?php echo $item->name; ?></a>
+                        <a href="
+                            <?php echo JRoute::_(ContactHelperRoute::getContactRoute($item->slug, $item->catid)); ?>
+                        ">
+                            <?php echo $item->name; ?>
+                        </a>
                     </td>
 
                     <?php if ($this->params->get('show_position_headings')) : ?>

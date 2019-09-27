@@ -1,18 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * @package     Joomla.Site
- * @subpackage  com_weblinks
- *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
-
 defined('_JEXEC') or die;
 
 // Code to support edit links for weblinks
 // Create a shortcut for params.
 $params = &$this->item->params;
-JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.framework');
 
@@ -24,14 +20,13 @@ $canCreate = $user->authorise('core.create', 'com_weblinks');
 $canEditState = $user->authorise('core.edit.state', 'com_weblinks');
 
 $n = count($this->items);
-$listOrder	= $this->escape($this->state->get('list.ordering'));
-$listDirn	= $this->escape($this->state->get('list.direction'));
+$listOrder = $this->escape($this->state->get('list.ordering'));
+$listDirn = $this->escape($this->state->get('list.direction'));
 ?>
 
 <?php if (empty($this->items)) : ?>
     <p> <?php echo JText::_('COM_WEBLINKS_NO_WEBLINKS'); ?></p>
 <?php else : ?>
-
 <form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" name="adminForm" id="adminForm">
     <?php if ($this->params->get('show_pagination_limit')) : ?>
         <fieldset class="filters">
@@ -47,7 +42,6 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 
     <table class="category">
         <?php if ($this->params->get('show_headings') == 1) : ?>
-
         <thead><tr>
 
             <th class="title">
@@ -65,7 +59,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
     <?php foreach ($this->items as $i => $item) : ?>
         <?php if ($this->items[$i]->state == 0) : ?>
             <tr class="system-unpublished cat-list-row<?php echo $i % 2; ?>">
-        <?php else: ?>
+        <?php else : ?>
             <tr class="cat-list-row<?php echo $i % 2; ?>" >
         <?php endif; ?>
 
@@ -75,45 +69,43 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
                     <?php echo JText::_('COM_WEBLINKS_LINK'); ?>
                 <?php elseif ($this->params->get('icons') == 1) : ?>
                     <?php if (!$this->params->get('link_icons')) : ?>
-                        <?php echo JHtml::_('image', 'system/'.$this->params->get('link_icons', 'weblink.png'), JText::_('COM_WEBLINKS_LINK'), null, true); ?>
-                    <?php else: ?>
-                        <?php echo '<img src="'.$this->params->get('link_icons').'" alt="'.JText::_('COM_WEBLINKS_LINK').'" />'; ?>
+                        <?php echo JHtml::_('image', 'system/' . $this->params->get('link_icons', 'weblink.png'), JText::_('COM_WEBLINKS_LINK'), null, true); ?>
+                    <?php else : ?>
+                        <?php echo '<img src="' . $this->params->get('link_icons') . '" alt="' . JText::_('COM_WEBLINKS_LINK') . '" />'; ?>
                     <?php endif; ?>
                 <?php endif; ?>
                 <?php
                     // Compute the correct link
-                    $menuclass = 'category'.$this->pageclass_sfx;
+                    $menuclass = 'category' . $this->pageclass_sfx;
                     $link = $item->link;
-                    $width	= $item->params->get('width');
-                    $height	= $item->params->get('height');
+                    $width = $item->params->get('width');
+                    $height = $item->params->get('height');
                     if ($width == null || $height == null) {
-                        $width	= 600;
-                        $height	= 500;
+                        $width = 600;
+                        $height = 500;
                     }
 
                     switch ($item->params->get('target', $this->params->get('target'))) {
                         case 1:
                             // open in a new window
-                            echo '<a href="'. $link .'" target="_blank" class="'. $menuclass .'" rel="nofollow">'.
-                                $this->escape($item->title) .'</a>';
+                            echo '<a href="' . $link . '" target="_blank" class="' . $menuclass . '" rel="nofollow">' .
+                                $this->escape($item->title) . '</a>';
                             break;
-
                         case 2:
                             // open in a popup window
-                            $attribs = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width='.$this->escape($width).',height='.$this->escape($height).'';
-                            echo "<a href=\"$link\" onclick=\"window.open(this.href, 'targetWindow', '".$attribs."'); return false;\">".
-                                $this->escape($item->title).'</a>';
+                            $attribs = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=' . $this->escape($width) . ',height=' . $this->escape($height) . '';
+                            echo "<a href=\"$link\" onclick=\"window.open(this.href, 'targetWindow', '" . $attribs . "'); return false;\">" .
+                                $this->escape($item->title) . '</a>';
                             break;
                         case 3:
                             // open in a modal window
                             JHtml::_('behavior.modal', 'a.modal'); ?>
-                            <a class="modal" href="<?php echo $link;?>"  rel="{handler: 'iframe', size: {x:<?php echo $this->escape($width);?>, y:<?php echo $this->escape($height);?>}}">
-                                <?php echo $this->escape($item->title). ' </a>';
+                            <a class="modal" href="<?php echo $link; ?>"  rel="{handler: 'iframe', size: {x:<?php echo $this->escape($width); ?>, y:<?php echo $this->escape($height); ?>}}">
+                                <?php echo $this->escape($item->title) . ' </a>';
                             break;
-
                         default:
                             // open in parent window
-                            echo '<a href="'.  $link . '" class="'. $menuclass .'" rel="nofollow">'.
+                            echo '<a href="' . $link . '" class="' . $menuclass . '" rel="nofollow">' .
                                 $this->escape($item->title) . ' </a>';
                             break;
                     }
@@ -129,7 +121,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
                         <?php endif; ?>
             </p>
 
-            <?php if (($this->params->get('show_link_description')) and ($item->description != '')): ?>
+            <?php if (($this->params->get('show_link_description')) and ($item->description != '')) : ?>
                 <?php echo $item->description; ?>
             <?php endif; ?>
         </td>
