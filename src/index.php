@@ -114,18 +114,18 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
                     </h1>
                 </div>--><!-- end logoheader -->
             <!--<ul class="skiplinks">
-                    <li><a href="#main" class="u2"><?php echo JText::_('TPL_BEEZ3_SKIP_TO_CONTENT'); ?></a></li>
-                    <li><a href="#nav" class="u2"><?php echo JText::_('TPL_BEEZ3_JUMP_TO_NAV'); ?></a></li>
+                    <li><a href="#main" class="u2"><?php echo JText::_('TPL_3JEZY_SKIP_TO_CONTENT'); ?></a></li>
+                    <li><a href="#nav" class="u2"><?php echo JText::_('TPL_3JEZY_JUMP_TO_NAV'); ?></a></li>
                     <?php if ($showRightColumn) : ?>
-                    <li><a href="#additional" class="u2"><?php echo JText::_('TPL_BEEZ3_JUMP_TO_INFO'); ?></a></li>
+                    <li><a href="#additional" class="u2"><?php echo JText::_('TPL_3JEZY_JUMP_TO_INFO'); ?></a></li>
                     <?php endif; ?>
                 </ul>
-                <h2 class="unseen"><?php echo JText::_('TPL_BEEZ3_NAV_VIEW_SEARCH'); ?></h2>
-                <h3 class="unseen"><?php echo JText::_('TPL_BEEZ3_NAVIGATION'); ?></h3>
+                <h2 class="unseen"><?php echo JText::_('TPL_3JEZY_NAV_VIEW_SEARCH'); ?></h2>
+                <h3 class="unseen"><?php echo JText::_('TPL_3JEZY_NAVIGATION'); ?></h3>
                 <jdoc:include type="modules" name="position-1" />-->
             <!--<div id="line">
                     <div id="fontsize"></div>
-                    <h3 class="unseen"><?php echo JText::_('TPL_BEEZ3_SEARCH'); ?></h3>
+                    <h3 class="unseen"><?php echo JText::_('TPL_3JEZY_SEARCH'); ?></h3>
                     <jdoc:include type="modules" name="position-0" />
                 </div> --><!-- end line -->
             </header><!-- end header -->
@@ -167,12 +167,12 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/javascript/
                     <?php endif; ?>
                     <?php if ($showRightColumn) : ?>
                     <!--<h2 class="unseen">
-                        <?php echo JText::_('TPL_BEEZ3_ADDITIONAL_INFORMATION'); ?>
+                        <?php echo JText::_('TPL_3JEZY_ADDITIONAL_INFORMATION'); ?>
                     </h2>-->
 <!-- <div id="close">
                         <a href="#" onclick="auf('right')">
                             <span id="bild">
-                                <?php echo JText::_('TPL_BEEZ3_TEXTRIGHTCLOSE'); ?>
+                                <?php echo JText::_('TPL_3JEZY_TEXTRIGHTCLOSE'); ?>
                             </span></a>
                     </div>-->
                     <nav id="right">

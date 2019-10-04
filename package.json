@@ -1,7 +1,7 @@
 {
-  "name": "3jezy-2017-joomla-template",
+  "name": "3jezy-2013-joomla-template",
   "version": "1.0.0",
-  "description": "Joomla Template for 3jezy 2017 Design",
+  "description": "Joomla Template for 3jezy 2013 Design",
   "scripts": {
     "format": "npm run format:check",
     "format:check": "prettier --list-different '**/*.php' --ignore-path .prettierignore",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/literat/3jezy-2017-joomla-template.git"
+    "url": "git+https://github.com/literat/3jezy-2013-joomla-template.git"
   },
   "keywords": [],
   "author": "Tomas Litera <tomas@litera.me>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/literat/3jezy-2017-joomla-template/issues"
+    "url": "https://github.com/literat/3jezy-2013-joomla-template/issues"
   },
-  "homepage": "https://github.com/literat/3jezy-2017-joomla-template#readme",
+  "homepage": "https://github.com/literat/3jezy-2013-joomla-template#readme",
   "devDependencies": {
     "@prettier/plugin-php": "^0.11.2",
     "prettier": "^1.18.2"

@@ -9,7 +9,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - "./src/:/var/www/html/templates/3jezy2017"
+      - "./src/:/var/www/html/templates/3jezy2013"
     environment:
       JOOMLA_DB_HOST: joomladb
       JOOMLA_DB_PASSWORD: example

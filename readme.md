@@ -1,6 +1,6 @@
-# 3jezy2017 Joomla Template
+# 3jezy2013 Joomla Template
 
-[![Build Status](https://travis-ci.org/literat/3jezy-2017-joomla-template.svg?branch=master)](https://travis-ci.org/literat/3jezy-2017-joomla-template)
+[![Build Status](https://travis-ci.org/literat/3jezy-2013-joomla-template.svg?branch=master)](https://travis-ci.org/literat/3jezy-2013-joomla-template)
 
 ## Development using Docker
 
