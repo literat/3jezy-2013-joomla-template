@@ -45,7 +45,7 @@ function modChrome_3jezyHide($module, $params, $attribs): void
             $html .= '<h' . $headerLevel . ' class="js_heading"> ' . $module->title;
             $html .=
                 '<a href="#" title="' .
-                JText::_('TPL_3JEZY2017_CLICK') .
+                JText::_('TPL_3JEZY_CLICK') .
                 '"
                 onclick="auf(\'module_' .
                 $module->id .
@@ -54,11 +54,11 @@ function modChrome_3jezyHide($module, $params, $attribs): void
                 $module->id .
                 '">';
             $html .= '<span class="no">';
-            $html .= '<img src="templates/3jezy2017/images/plus.png" alt="';
+            $html .= '<img src="templates/3jezy2013/images/plus.png" alt="';
             if ($state == 1) {
-                $html .= JText::_('TPL_3JEZY2017_ALTOPEN');
+                $html .= JText::_('TPL_3JEZY_ALTOPEN');
             } else {
-                $html .= JText::_('TPL_3JEZY2017_ALTCLOSE');
+                $html .= JText::_('TPL_3JEZY_ALTCLOSE');
             }
             $html .= '" /></span></a></h' . $headerLevel . '>';
         }
@@ -124,7 +124,7 @@ function modChrome_3jezyTabs($module, $params, $attribs): void
                     '<a href="#" class="unseen" onclick="nexttab(\'module_%s\');return false;" id="next_%s">%s</a>',
                     $rendermodule->id,
                     $rendermodule->id,
-                    JText::_('TPL_3JEZY2017_NEXTTAB')
+                    JText::_('TPL_3JEZY_NEXTTAB')
                 );
             }
             echo '</div>';
