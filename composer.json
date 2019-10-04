@@ -19,7 +19,7 @@
         "lint:fix": "ecs check src --fix --ansi",
         "format": "npm run format",
         "format:fix": "npm run format:fix",
-        "deploy:prod": "phploy -s production --force",
+        "deploy:prod": "phploy -s production --force --fresh",
         "deploy:dry": "phploy -l -s production"
     }
 }
